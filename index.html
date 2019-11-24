@@ -1,0 +1,112 @@
+<!doctype html>
+<html lang="en">
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <meta name="viewport" content="initial-scale=1,user-scalable=no,maximum-scale=1,width=device-width">
+        <meta name="mobile-web-app-capable" content="yes">
+        <meta name="apple-mobile-web-app-capable" content="yes">
+        <link rel="stylesheet" href="mapbox/mapbox-gl.css">
+        <link rel="stylesheet" href="css/qgis2web.css">
+        <style>
+        #map {
+            width: 1112px;
+            height: 891px;
+        }
+        </style>
+        <title></title>
+    </head>
+    <body>
+        <div id="map">
+        </div>
+        <script src="js/qgis2web_expressions.js"></script>
+        <script src="./mapbox/mapbox-gl.js"></script>
+        <script src="data/blockfaces_1.js"></script>
+<script src="./mapbox/style.js"></script>
+<script src="./js/Autolinker.min.js"></script>
+<script>
+var map = new mapboxgl.Map({
+ container: 'map',
+ style: styleJSON,
+ center: [-122.2639236703448,37.81386485264926],
+ zoom: 13,
+ bearing: 360.0,
+ attributionControl: false
+});
+map.addControl(new mapboxgl.NavigationControl());
+map.addControl(new mapboxgl.AttributionControl({
+    customAttribution: '<a href="https://github.com/tomchadwin/qgis2web" target="_blank">qgis2web</a> &middot; <a href="https://github.com/mapbox/mapbox-gl-js" target="_blank">Mapbox GL JS</a> &middot; <a href="https://qgis.org" target="_blank">QGIS</a>',
+    compact: false
+}));
+
+map.on('click', 'lyr_blockfaces_1_0', function (e) {
+    var description = '<table>\
+                    <tr>\
+                        <th scope="row">gid</th>\
+                        <td>' + (e.features[0].properties['gid'] !== null ? Autolinker.link(e.features[0].properties['gid'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">shape_leng</th>\
+                        <td>' + (e.features[0].properties['shape_leng'] !== null ? Autolinker.link(e.features[0].properties['shape_leng'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blckfc_id</th>\
+                        <td>' + (e.features[0].properties['blckfc_id'] !== null ? Autolinker.link(e.features[0].properties['blckfc_id'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum17q1</th>\
+                        <td>' + (e.features[0].properties['blcksum17q1'] !== null ? Autolinker.link(e.features[0].properties['blcksum17q1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum17q2</th>\
+                        <td>' + (e.features[0].properties['blcksum17q2'] !== null ? Autolinker.link(e.features[0].properties['blcksum17q2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum17q3</th>\
+                        <td>' + (e.features[0].properties['blcksum17q3'] !== null ? Autolinker.link(e.features[0].properties['blcksum17q3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum17q4</th>\
+                        <td>' + (e.features[0].properties['blcksum17q4'] !== null ? Autolinker.link(e.features[0].properties['blcksum17q4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum18q1</th>\
+                        <td>' + (e.features[0].properties['blcksum18q1'] !== null ? Autolinker.link(e.features[0].properties['blcksum18q1'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum18q2</th>\
+                        <td>' + (e.features[0].properties['blcksum18q2'] !== null ? Autolinker.link(e.features[0].properties['blcksum18q2'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum18q3</th>\
+                        <td>' + (e.features[0].properties['blcksum18q3'] !== null ? Autolinker.link(e.features[0].properties['blcksum18q3'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">blcksum18q4</th>\
+                        <td>' + (e.features[0].properties['blcksum18q4'] !== null ? Autolinker.link(e.features[0].properties['blcksum18q4'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <th scope="row">area</th>\
+                        <td>' + (e.features[0].properties['area'] !== null ? Autolinker.link(e.features[0].properties['area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                    <tr>\
+                        <td colspan="2"><strong>sub_area</strong><br />' + (e.features[0].properties['sub_area'] !== null ? Autolinker.link(e.features[0].properties['sub_area'].toLocaleString()) : '') + '</td>\
+                    </tr>\
+                </table>'
+    new mapboxgl.Popup()
+        .setLngLat(e.lngLat)
+        .setHTML(description)
+        .addTo(map);
+});
+
+// Change the cursor to a pointer when the mouse is over the places layer.
+map.on('mouseenter', 'lyr_blockfaces_1_0', function () {
+    map.getCanvas().style.cursor = 'pointer';
+});
+// Change it back to a pointer when it leaves.
+map.on('mouseleave', 'lyr_blockfaces_1_0', function () {
+    map.getCanvas().style.cursor = '';
+});
+</script>
+    </body>
+</html>
